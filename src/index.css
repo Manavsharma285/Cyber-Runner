@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-pink: #ff00ff;
+  --color-neon-blue: #00f3ff;
+  --color-neon-cyan: #00ffff;
+  --color-neon-purple: #b026ff;
+  --color-neon-purple-light: #d896ff;
+  --color-cyber-dark: #0a0a1a;
+  --color-cyber-darker: #050510;
+  
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-cyber-darker);
+    color: white;
+    font-family: var(--font-inter);
+    overflow: hidden; /* Prevent scrolling in game */
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.glow-text {
+  text-shadow: 0 0 10px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan);
+}
+
+.glow-text-pink {
+  text-shadow: 0 0 10px var(--color-neon-pink), 0 0 20px var(--color-neon-pink);
+}
+
+.glow-box {
+  box-shadow: 0 0 15px var(--color-neon-cyan);
+}
+
+.glow-box-pink {
+  box-shadow: 0 0 15px var(--color-neon-pink);
+}
+
+.cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 243, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  from { top: 0; }
+  to { top: 100%; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-hover:hover {
+  animation: glitch 0.2s infinite;
+}
